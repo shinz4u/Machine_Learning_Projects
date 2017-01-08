@@ -129,7 +129,12 @@ class LearningAgent(Agent):
                 action = random.choice(self.valid_actions)
             else:
                 if str(state) in self.Q:
-                    action = max(self.Q[str(state)].iteritems(), key=operator.itemgetter(1))[0]
+                    max_val = self.get_maxQ(state)
+                    max_action_list = []
+                    for key, value in self.Q[str(state)].items():
+                        if value is max_val:
+                            max_action_list.append(key)
+                    action = random.choice(max_action_list)  # Selects an action randomly if list has multiple actions.
                 else:
                     action = random.choice(self.valid_actions)  # Set action as a random choice if state not in self.Q
         return action
