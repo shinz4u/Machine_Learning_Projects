@@ -1,6 +1,5 @@
 # Airbnb: Kaggle Project 
-## Airbnb New User Bookings
-[a link](https://www.kaggle.com/c/airbnb-recruiting-new-user-bookings/data)
+## [Airbnb New User Bookings](https://www.kaggle.com/c/airbnb-recruiting-new-user-bookings/data)
 
 This project requires **Python 2.7** with the Ipython Notebook
 Libraries : Pandas, sci-kit learn, seaborn, numpy
