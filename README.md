@@ -5,4 +5,4 @@
 3. Udacity Student Intervention               (Done)
 4. Udacity Creating Customer Segments         (Done)
 5. Udacity Smartcab                           (Done)
-6. Udacity Capstone (Machine Learning)        (Ongoing)
+6. Airbnb : New User Bookings ML Model        (Done)
