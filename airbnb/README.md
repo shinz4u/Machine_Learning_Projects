@@ -11,7 +11,7 @@ Libraries : pandas, sci-kit learn, seaborn, numpy, matplotlib, XGBoost, sklearn.
 
 Steps to follow:  
 1. Unzip all datasets.  
-2. Open Airbnb_New_User_Booking_Prediction_Part_1_of_2.ipynb and run. 
+2. Open Airbnb_New_User_Booking_Prediction_Part_1_of_2.ipynb and run.  
 3. After the datasets are created run Airbnb_New_User_Booking_Prediction_Part_2_of_2.ipynb  
 
 Please read through the report as well as the .ipynb notebooks and follow along.
