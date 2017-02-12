@@ -24649,7 +24649,7 @@ There is a possibility that when we test this data, the predictions might heavil
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This datset merely contains the 9 countries listed and contains lattitude,longitude, distance from US, area in square km, the language in the country and a metric value which is the measure of how much each countries language is different from English.</p>
+<p>This dataset merely contains the 9 countries listed and contains latitude,longitude, distance from US, area in square km, the language in the country and a metric value which is the measure of how much each countries language is different from English.</p>
 <p>Some of the use cases of this dataset that I can think of:</p>
 <ol>
 <li>The distance of the destination from US, People tend to travel smaller distances more frequently. Thereby this could maybe be of potential value.</li>
@@ -26127,6 +26127,19 @@ Unique elements in secs_elapsed
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As there are a lot of categorical values in almost all the columns, We will have to one hot encode them.
 Below, I am creating dummy columns for <code>action, action_type and action_detail</code></p>
+<p><strong> The requirement of this function is given below.</strong><br>
+sklearn.OneHotEncoder did not work for converting this dataframe as when I was run it using this particular function. The iPython Notebook Crashed and a restart of kernal was suggested. The underlying reason for the problem is unknown. Therefore I wrote a create_dummy function to handle it for me.</p>
+<p>First , The columns that has to one hot encoded is created which is</p>
+<p>"to_dummy = ['action','action_type','action_detail']"</p>
+<p>create_dummy function will take the dataframe and column to one hot encode as the parameters.
+Creates a new dataframe which contains the user_id and the column.
+creates a new column named "count" and assigns 1 to every row.
+Groupby the newdf by user_id and column pair, which will lead to counting up the values that were created in count column.
+Now pivot the newdf based on user_id , where columns are col and column values will be the count.
+This basically creates columsn for all the unique values. 
+Now just rename the columns based on the unique value and the inital column.</p>
+<p>For the three columns that are being one hot encoded. They are concatenated outside the function. One of the points that is to be noted is that , once you concatenate in that manner, the user_id becomes the index. so you have to reindex these dataframe to easily join with the other dataframes</p>
+<p>reference: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html</a></p>
 
 </div>
 </div>

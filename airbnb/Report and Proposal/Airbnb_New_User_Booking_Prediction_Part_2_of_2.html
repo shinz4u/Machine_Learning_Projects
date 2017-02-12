@@ -16835,7 +16835,7 @@ The prediction on the given global test data will be done after we have a suitab
 <div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Veryfying the number of rows in all the dataframes that will be trained and tested</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Verifying the number of rows in all the dataframes that will be trained and tested</span>
 
 <span class="k">print</span> <span class="s2">&quot;Number of rows in training_data_merged:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">training_data_merged</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of rows in destination_merged:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">destination_merged</span><span class="p">)</span>
@@ -17008,7 +17008,7 @@ Reference: <a href="http://stats.stackexchange.com/questions/117643/why-use-stra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
@@ -17018,10 +17018,17 @@ Reference: <a href="http://stats.stackexchange.com/questions/117643/why-use-stra
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
 
+<span class="c1"># The default implementation with random_state / seed values of 27 is used.</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">27</span><span class="p">)</span>
 
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
-<span class="c1">#clf_B = SVC(random_state = 42)</span>
-<span class="n">clf_C</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+<span class="c1"># SVC does not terminate, therefore commented it</span>
+<span class="c1">#clf_B = SVC(random_state = 27)</span>
+
+<span class="c1"># LogisticRegression default values are for binary classification. This problem especially </span>
+<span class="c1"># requires multi-nomial logistic regression.</span>
+<span class="c1"># Therefore solver=&#39;newton-cg&#39; and multi_class=&#39;multinomial&#39;.</span>
+<span class="n">clf_C</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">27</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;newton-cg&#39;</span><span class="p">,</span><span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">)</span>
+
 
 <span class="n">classifier_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">clf_C</span><span class="p">]</span>
     
@@ -17045,35 +17052,39 @@ Reference: <a href="http://stats.stackexchange.com/questions/117643/why-use-stra
 **----------------------------New Classifier--------------------------**
 
 Training a RandomForestClassifier using a training set size of 192105. . .
-Trained model in 30.9365 seconds
-Made predictions in 4.1802 seconds.
-F1 score for training set: 0.9515.
-Made predictions in 0.4876 seconds.
-F1 SCORE FOR TEST SET: 0.5581.
+Trained model in 30.3826 seconds
+Made predictions in 3.2560 seconds.
+F1 score for training set: 0.9517.
+Made predictions in 0.7060 seconds.
+F1 SCORE FOR TEST SET: 0.5590.
 ------------------------------------------------------------------------
 
 **----------------------------New Classifier--------------------------**
 
 Training a LogisticRegression using a training set size of 192105. . .
-Trained model in 266.3050 seconds
-Made predictions in 2.2150 seconds.
 </pre>
 </div>
 </div>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/mohammedshinoy/anaconda/lib/python2.7/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no predicted samples.
-  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
+<pre>/Users/mohammedshinoy/anaconda/lib/python2.7/site-packages/scipy/optimize/linesearch.py:414: LineSearchWarning: The line search algorithm did not converge
+  warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
+/Users/mohammedshinoy/anaconda/lib/python2.7/site-packages/scipy/optimize/linesearch.py:285: LineSearchWarning: The line search algorithm did not converge
+  warn(&#39;The line search algorithm did not converge&#39;, LineSearchWarning)
+/Users/mohammedshinoy/anaconda/lib/python2.7/site-packages/sklearn/utils/optimize.py:203: ConvergenceWarning: newton-cg failed to converge. Increase the number of iterations.
+  &#34;number of iterations.&#34;, ConvergenceWarning)
 </pre>
 </div>
 </div>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>F1 score for training set: 0.4758.
-Made predictions in 0.2578 seconds.
-F1 SCORE FOR TEST SET: 0.4771.
+<pre>Trained model in 1401.0322 seconds
+Made predictions in 3.1293 seconds.
+F1 score for training set: 0.5167.
+Made predictions in 0.2494 seconds.
+F1 SCORE FOR TEST SET: 0.5172.
 ------------------------------------------------------------------------
 </pre>
 </div>
